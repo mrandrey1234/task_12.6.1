@@ -3,29 +3,15 @@ ob_start();
 require('task3.php');
 ob_get_clean();
 
-$persons = [
-    ['fullname' => 'Иванов Иван Иванович'],
-    ['fullname' => 'Степанова Александра Степановна'],
-    ['fullname' => 'Пащенко Владимир Александрович'],
-    ['fullname' => 'Громов Александр Иванович'],
-    ['fullname' => 'Славин Семён Сергеевич'],
-    ['fullname' => 'Цой Владимир Антонович'],
-    ['fullname' => 'Быстрая Юлия Сергеевна'],
-    ['fullname' => 'Шматко Антонина Сергеевна'],
-    ['fullname' => 'аль-Хорезми Мухаммад ибн-Муса'],
-    ['fullname' => 'Бардо Жаклин Фёдоровна'],
-    ['fullname' => 'Степанова Елена Степановна'],
-];
-
 function getPerfectPartner($surname, $name, $patronomyc, $arr){
-    $fullname = mb_convert_case(getPartsFromFullname($surname, $name, $patronomyc), MB_CASE_TITLE_SIMPLE);
+    $fullname = mb_convert_case(getFullnameFromParts($surname, $name, $patronomyc), MB_CASE_TITLE_SIMPLE);
 
     $gender = getGenderFromName($fullname);
 
     do {
         $randomPerson = $arr[array_rand($arr)];
         $randomGender = getGenderFromName($randomPerson['fullname']);
-    } while ($gender === $randomGender || $randomGender === 0);
+    } while ($gender === $randomGender || $randomGender === "Неопределенный пол");
 
     $partner_1 = getShortName($fullname);
     $partner_2 = getShortName($randomPerson['fullname']);
@@ -38,10 +24,10 @@ function getPerfectPartner($surname, $name, $patronomyc, $arr){
 }
 
 function getShortName($FIO){
-    $person = getFullnameFromParts($FIO);
+    $person = getPartsFromFullname($FIO);
 
     return $person['name'] . ' ' . mb_substr($person['surname'], 0, 1) . '.';
 }
 
-echo getPerfectPartner('СтеПаноВа', 'ЕлЕна', 'СтеПАНОВна', $persons);
+echo getPerfectPartner('СтеПаноВа', 'ЕлЕна', 'СтеПАНОВна', $example_persons_array);
 ?>

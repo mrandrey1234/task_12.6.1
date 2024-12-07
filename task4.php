@@ -3,21 +3,6 @@ ob_start();
 require('task3.php');
 ob_get_clean();
 
-$persons = [
-    ['fullname' => 'Иванов Иван Иванович'],
-    ['fullname' => 'Степанова Александра Степановна'],
-    ['fullname' => 'Пащенко Владимир Александрович'],
-    ['fullname' => 'Громов Александр Иванович'],
-    ['fullname' => 'Славин Семён Сергеевич'],
-    ['fullname' => 'Цой Владимир Антонович'],
-    ['fullname' => 'Быстрая Юлия Сергеевна'],
-    ['fullname' => 'Шматко Антонина Сергеевна'],
-    ['fullname' => 'аль-Хорезми Мухаммад ибн-Муса'],
-    ['fullname' => 'Бардо Жаклин Фёдоровна'],
-    ['fullname' => 'Степанова Елена Степановна'],
-];
-
-
 function getGenderDescription($arr){
     $all_person = count($arr);
     $male_count = 0;
@@ -27,10 +12,10 @@ function getGenderDescription($arr){
     foreach($arr as $person){
         $gender = getGenderFromName($person['fullname']);
 
-        if($gender === 1){
+        if($gender === "Мужской пол"){
             $male_count++;
         }
-        else if($gender === -1){
+        else if($gender === "Женский пол"){
             $female_count++;
         }
         else{
@@ -49,5 +34,5 @@ function getGenderDescription($arr){
             "Не удалось определить - {$unknown_percent}%";
 }
 
-echo getGenderDescription($persons);
+echo getGenderDescription($example_persons_array);
 ?>

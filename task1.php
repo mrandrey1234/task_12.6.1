@@ -1,15 +1,15 @@
 <?php
 echo 'Задание 1 </br>';
 
-function getPartsFromFullname($str1, $str2, $str3){
+function getFullnameFromParts($str1, $str2, $str3){
     return $str1 . " " . $str2 . " " . $str3;
 }
 
-echo getPartsFromFullname("Иванов", "Иван", "Иванович");
+echo getFullnameFromParts("Иванов", "Иван", "Иванович");
 
 echo '</br>';
 
-function getFullnameFromParts($FIO){
+function getPartsFromFullname($FIO){
 
     $new_arr = explode(' ', $FIO);
 
@@ -25,6 +25,6 @@ function getFullnameFromParts($FIO){
     return $new_arr;
 }
 
-var_dump(getFullnameFromParts('Иванов Иван Иванович'));
+var_dump(getPartsFromFullname('Иванов Иван Иванович'));
 echo '</br>';                        
 ?>

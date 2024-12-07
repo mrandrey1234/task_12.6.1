@@ -6,7 +6,7 @@ ob_get_clean();
 echo 'Задание 2 </br>';
 
 function getShortName($FIO){
-    $person = getFullnameFromParts($FIO);
+    $person = getPartsFromFullname($FIO);
 
     return $person['name'] . ' ' . mb_substr($person['surname'], 0, 1) . '.';
 }
